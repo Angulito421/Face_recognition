@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>Prueba de audio para alertas de somnolencia</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <p class="eyebrow">Prueba inicial de audio</p>
+
+      <h1>Prueba de audio para alertas de somnolencia</h1>
+
+      <p class="subtitle">
+        Esta página sirve para validar que una futura web de detección de
+        somnolencia pueda emitir alertas desde el audio del celular, incluyendo
+        salida por audífonos Bluetooth o por el sistema de audio del auto.
+      </p>
+
+      <div class="notice" role="note">
+        <strong>Recomendación:</strong>
+        Asegúrate de que el volumen del celular y del dispositivo Bluetooth esté
+        suficientemente alto.
+      </div>
+
+      <div class="info-block">
+        <p>
+          Los navegadores móviles normalmente requieren interacción del usuario
+          para reproducir audio. Por eso, toca un botón para iniciar la prueba.
+        </p>
+        <p>
+          Esta web no puede leer de forma confiable el volumen físico real del
+          teléfono o del Bluetooth, así que la validación del volumen se hace de
+          manera guiada según lo que tú escuches.
+        </p>
+      </div>
+
+      <section class="controls" aria-label="Controles de prueba de audio">
+        <button id="btn-soft" class="btn btn-soft" type="button">
+          Probar alarma suave
+        </button>
+
+        <button id="btn-medium" class="btn btn-medium" type="button">
+          Probar alarma media
+        </button>
+
+        <button id="btn-strong" class="btn btn-strong" type="button">
+          Probar alarma fuerte
+        </button>
+
+        <button id="btn-stop" class="btn btn-stop" type="button">
+          Detener audio
+        </button>
+      </section>
+
+      <section class="status-box" aria-live="polite" aria-atomic="true">
+        <h2>Estado</h2>
+        <p id="status-text">Esperando una prueba de audio...</p>
+      </section>
+
+      <section class="validation-box" aria-labelledby="validation-title">
+        <h2 id="validation-title">Validación guiada</h2>
+        <p class="validation-question">¿Escuchaste claramente la alarma?</p>
+
+        <div class="validation-actions">
+          <button id="btn-heard" class="btn btn-secondary" type="button">
+            Sí, la escuché
+          </button>
+
+          <button id="btn-volume" class="btn btn-secondary outline" type="button">
+            No, subir volumen
+          </button>
+        </div>
+
+        <p id="validation-text" class="validation-result">
+          Reproduce una alarma y luego confirma si la escuchaste bien.
+        </p>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

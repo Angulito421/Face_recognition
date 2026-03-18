@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>Prueba de cámara y detección facial</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <p class="eyebrow">Paso 2 · Cámara + Face Landmarks</p>
+
+      <h1>Prueba de cámara y detección facial</h1>
+
+      <p class="subtitle">
+        Esta página solicita acceso a la cámara frontal, muestra el video en vivo
+        y dibuja landmarks faciales en tiempo real para validar la base visual de
+        una futura app de detección de somnolencia.
+      </p>
+
+      <div class="notice">
+        <strong>Importante:</strong>
+        En móvil, el acceso a cámara suele requerir un contexto seguro
+        (<code>https://</code>) o <code>localhost</code>.
+      </div>
+
+      <div class="controls">
+        <button id="startBtn" class="btn btn-primary" type="button">
+          Iniciar cámara
+        </button>
+
+        <button id="stopBtn" class="btn btn-dark" type="button" disabled>
+          Detener cámara
+        </button>
+      </div>
+
+      <section class="status-panel" aria-live="polite" aria-atomic="true">
+        <div class="status-row">
+          <span class="status-label">Estado de cámara</span>
+          <span id="cameraStatus" class="status-chip status-idle">Inactiva</span>
+        </div>
+
+        <div class="status-row">
+          <span class="status-label">Detección facial</span>
+          <span id="faceStatus" class="status-chip status-waiting">Sin iniciar</span>
+        </div>
+
+        <p id="statusMessage" class="status-message">
+          Pulsa “Iniciar cámara” para comenzar la prueba.
+        </p>
+      </section>
+
+      <section class="viewer-section">
+        <div class="viewer" id="viewer">
+          <video
+            id="video"
+            class="video"
+            autoplay
+            muted
+            playsinline
+          ></video>
+
+          <canvas id="overlay" class="overlay"></canvas>
+
+          <div id="emptyState" class="empty-state">
+            La cámara aún no está activa.
+          </div>
+        </div>
+      </section>
+
+      <section class="help-box">
+        <h2>Qué valida esta prueba</h2>
+        <ul>
+          <li>Permiso de cámara</li>
+          <li>Video en vivo</li>
+          <li>Detección de rostro</li>
+          <li>Dibujo de landmarks en canvas</li>
+        </ul>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

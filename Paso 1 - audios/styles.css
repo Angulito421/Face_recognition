@@ -1,0 +1,203 @@
+/* =========================
+   Reset básico
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f7fb;
+  color: #132033;
+}
+
+/* =========================
+   Layout principal
+========================= */
+.app {
+  min-height: 100vh;
+  padding: 20px 14px 32px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 20px 16px 22px;
+  box-shadow: 0 10px 30px rgba(12, 28, 56, 0.08);
+}
+
+/* =========================
+   Texto
+========================= */
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #49617d;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 1.65rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin: 0 0 16px;
+  line-height: 1.55;
+  color: #35465d;
+}
+
+.notice,
+.info-block,
+.status-box,
+.validation-box {
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.notice {
+  background: #fff5d9;
+  color: #5b4600;
+  border: 1px solid #f0dfa4;
+}
+
+.info-block {
+  background: #eef5ff;
+  border: 1px solid #d7e6ff;
+  color: #23354f;
+}
+
+.info-block p {
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.info-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   Botones
+========================= */
+.controls {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.validation-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn {
+  width: 100%;
+  min-height: 56px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: transform 0.08s ease, opacity 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-soft {
+  background: #dceeff;
+  color: #12406e;
+}
+
+.btn-medium {
+  background: #cfe8d8;
+  color: #185337;
+}
+
+.btn-strong {
+  background: #ffd6d6;
+  color: #7a1717;
+}
+
+.btn-stop {
+  background: #1d2433;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background: #2c6bed;
+  color: #ffffff;
+}
+
+.btn-secondary.outline {
+  background: #ffffff;
+  color: #2c6bed;
+  border: 2px solid #2c6bed;
+}
+
+/* =========================
+   Bloques de estado
+========================= */
+.status-box {
+  background: #f7f9fc;
+  border: 1px solid #dce4ef;
+}
+
+.status-box h2,
+.validation-box h2 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.status-box p,
+.validation-box p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.validation-box {
+  background: #f9fbff;
+  border: 1px solid #dfe8f5;
+}
+
+.validation-question {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.validation-result {
+  margin-top: 12px !important;
+  color: #2a3b53;
+}
+
+/* =========================
+   Pantallas un poco más grandes
+========================= */
+@media (min-width: 480px) {
+  .card {
+    padding: 24px 20px 24px;
+  }
+
+  .validation-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
