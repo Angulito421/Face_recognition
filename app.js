@@ -2,6 +2,17 @@
 //   FaceLandmarker,
 //   FilesetResolver
 // } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/vision_bundle.mjs";
+// FPS tracking
+let lastFpsTime = performance.now();
+let frameCount = 0;
+
+let lastDetectionTime = performance.now();
+let detectionCount = 0;
+
+let currentFPS = 0;
+let currentDetectionFPS = 0;
+
+const fpsText = document.getElementById("fpsText");
 
 import {
   FaceLandmarker,
@@ -159,18 +170,64 @@ function drawLandmarks(landmarksList) {
 // ================================
 // Loop de detección en tiempo real
 // ================================
+// async function detectLoop() {
+//   if (!cameraRunning || !faceLandmarker) return;
+
+//   syncCanvasSize();
+
+//   if (video.readyState >= 2) {
+//     // Procesar solo si el video avanzó de frame.
+//     if (video.currentTime !== lastVideoTime) {
+//       lastVideoTime = video.currentTime;
+
+//       const startTimeMs = performance.now();
+//       const result = faceLandmarker.detectForVideo(video, startTimeMs);
+
+//       drawLandmarks(result.faceLandmarks);
+
+//       if (result.faceLandmarks && result.faceLandmarks.length > 0) {
+//         // Detección de rostro
+//         setMessage("Rostro detectado correctamente en tiempo real.");
+//       } else {
+//         }setMessage("Cámara activa, pero aún no se detecta un rostro.");
+//       }
+//     }
+//   }
+
+//   animationFrameId = requestAnimationFrame(detectLoop);
+// }
+
 async function detectLoop() {
   if (!cameraRunning || !faceLandmarker) return;
 
+  const now = performance.now();
+
   syncCanvasSize();
 
+  // =========================
+  // FPS GLOBAL (render loop)
+  // =========================
+  frameCount++;
+
+  if (now - lastFpsTime >= 1000) {
+    currentFPS = frameCount;
+    frameCount = 0;
+    lastFpsTime = now;
+  }
+
+  // =========================
+  // DETECCIÓN (solo si frame cambia)
+  // =========================
   if (video.readyState >= 2) {
-    // Procesar solo si el video avanzó de frame.
     if (video.currentTime !== lastVideoTime) {
       lastVideoTime = video.currentTime;
 
       const startTimeMs = performance.now();
+
       const result = faceLandmarker.detectForVideo(video, startTimeMs);
+
+      // contar detección
+      detectionCount++;
 
       drawLandmarks(result.faceLandmarks);
 
@@ -181,6 +238,20 @@ async function detectLoop() {
       }
     }
   }
+
+  // =========================
+  // FPS DE DETECCIÓN
+  // =========================
+  if (now - lastDetectionTime >= 1000) {
+    currentDetectionFPS = detectionCount;
+    detectionCount = 0;
+    lastDetectionTime = now;
+  }
+
+  // =========================
+  // Mostrar en UI
+  // =========================
+  fpsText.textContent = `FPS: ${currentFPS} | Detección: ${currentDetectionFPS}`;
 
   animationFrameId = requestAnimationFrame(detectLoop);
 }
@@ -195,7 +266,7 @@ async function startCamera() {
         "Este navegador no soporta getUserMedia o no está en un contexto seguro."
       );
     }
-
+// holi :b
     startBtn.disabled = true;
     setChip(cameraStatus, "Iniciando...", "status-waiting");
     setChip(faceStatus, "Buscando...", "status-waiting");
